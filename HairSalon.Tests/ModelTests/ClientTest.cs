@@ -16,7 +16,7 @@ namespace HairSalon.Tests
     public void Dispose()
     {
       Client.DeleteAll();
-      // Stylist.DeleteAll();
+      Stylist.DeleteAll();
     }
     [TestMethod]
     public void GetClientName_ReturnsClientName_String()
@@ -46,11 +46,6 @@ namespace HairSalon.Tests
 
       //Act
       List<Client> result = Client.GetAll();
-// Code to help print list and debug
-      // foreach (Client thisClient in result)
-      // {
-      //   Console.WriteLine("Output: " + thisClient.GetClientName());
-      // }
 
       //Assert
       CollectionAssert.AreEqual(newList, result);

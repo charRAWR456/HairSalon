@@ -27,59 +27,54 @@ namespace HairSalon.Controllers
           return View("details",stylist);
         }
 
-        // [HttpGet("/clients")]
-        // public ActionResult Index()
-        // {
-        //     List<Client> allClients = Client.GetAll();
-        //     return View(allClients);
-        // }
-        //
-        // [HttpGet("/clients/new")]
-        // public ActionResult CreateForm()
-        // {
-        //     return View();
-        // }
-        [HttpPost("/stylists/{stylistId}")]
-        public ActionResult Create()
+        [HttpGet("/clients")]
+                public ActionResult Index()
+                {
+                    List<Client> allClients = Client.GetAll();
+                    return View(allClients);
+                }
+
+        [HttpPost("/clients")]
+          public ActionResult Create()
+          {
+            Client newClient = new Client (Request.Form["client-name"],Int32.Parse(Request.Form["stylist-id"]));
+            newClient.Save();
+            List<Client> allClients = Client.GetAll();
+            return RedirectToAction("Index");
+          }
+        [HttpPost("/clients/delete")]
+        public ActionResult DeleteAll(int id)
         {
-          Client newClient = new Client (Request.Form["client-name"],Int32.Parse(Request.Form["stylist-id"]));
-          newClient.Save();
-          List<Client> allClients = Client.GetAll();
+          Client thisClient = Client.Find(id);
+          thisClient.Delete();
+          return RedirectToAction("Index");
+        }
+        [HttpGet("/clients/{id}/delete")]
+        public ActionResult DeleteOne(int id)
+        {
+          Client thisClient = Client.Find(id);
+          thisClient.Delete();
           return RedirectToAction("details");
         }
-        // [HttpPost("/clients/delete")]
-        // public ActionResult DeleteAll(int id)
-        // {
-        //   Client thisClient = Client.Find(id);
-        //   thisClient.Delete();
-        //   return RedirectToAction("Index");
-        // }
-//         [HttpGet("/clients/{id}/delete")]
-//         public ActionResult DeleteOne(int id)
-//         {
-//           Client thisClient = Client.Find(id);
-//           thisClient.Delete();
-//           return RedirectToAction("details");
-//         }
-// //need?
-//         [HttpGet("/clients/{id}")]
-//         public ActionResult Details(int id)
-//         {
-//             Client client = Client.Find(id);
-//             return View(client);
-//         }
-//         [HttpGet("/clients/{id}/update")]
-//         public ActionResult UpdateForm(int id)
-//         {
-//             Client thisClient = Client.Find(id);
-//             return View("update", thisClient);
-//         }
-//         [HttpPost("/clients/{id}/update")]
-//         public ActionResult Update(int id)
-//         {
-//           Client thisClient = Client.Find(id);
-//           thisClient.Edit(Request.Form["newname"]);
-//           return RedirectToAction("Index");
-//         }
+//need?
+        [HttpGet("/clients/{id}")]
+        public ActionResult Details(int id)
+        {
+            Client client = Client.Find(id);
+            return View(client);
+        }
+        [HttpGet("/clients/{id}/update")]
+        public ActionResult UpdateForm(int id)
+        {
+            Client thisClient = Client.Find(id);
+            return View("update", thisClient);
+        }
+        [HttpPost("/clients/{id}/update")]
+        public ActionResult Update(int id)
+        {
+          Client thisClient = Client.Find(id);
+          thisClient.Edit(Request.Form["newname"]);
+          return RedirectToAction("Index");
+        }
     }
 }

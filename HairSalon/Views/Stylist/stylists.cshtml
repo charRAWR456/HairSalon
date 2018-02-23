@@ -1,0 +1,12 @@
+<h1>Stylists</h1>
+@if (@Model.Count == 0)
+{
+  <h3>No Stylists have been added yet!</h3>
+}
+@foreach (var stylist in Model)
+{
+  <ul>
+  <li><a href='/stylists/@stylist.GetId()'><strong>@stylist.GetName()</strong></a></li>
+  </ul>
+}
+<p><a href='/'>Home</a> | <a href='/stylists/new'>Add New Stylist</a></p>

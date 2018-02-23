@@ -1,0 +1,8 @@
+<h3>@Model["stylist"].GetName()'s Client List:</h3>
+<ol>
+@foreach (var client in @Model["clients"])
+{
+  <li><a href='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()'>@client.GetName()</a></li>
+}
+</ol>
+<p><a href='/'>Home</a> | <a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add Client</a> | <a href='/stylists'>Stylist List</a></p>

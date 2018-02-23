@@ -41,7 +41,7 @@ namespace HairSalon.Controllers
     [HttpGet("/stylists/{id}/client/new")]
     public ActionResult CreateClientForm()
     {
-      return View("~/Views/Clients/CreateClientForm.cshtml");
+      return View("~/Views/Client/CreateForm.cshtml");
     }
   }
 }

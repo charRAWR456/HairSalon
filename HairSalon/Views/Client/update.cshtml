@@ -1,9 +1,9 @@
 <h1>Hair Salon</h1>
 <hr />
-<h2>Edit Stylist: @Model.GetDescription()</h2>
-<form action="/items/@Model.GetId()/update" method="post">
+<h2>Edit Client: @Model.GetClientName()</h2>
+<form action="/clients/{id}/update" method="post">
     <label for="name">Name:</label>
-    <input type="text" name="newname" value="@Model.GetDescription()">
+    <input type="text" name="newname" value="@Model.GetClientName()">
     <button type="submit">Update</button>
 </form>
 <h4><a href="/">Home</a></h4>

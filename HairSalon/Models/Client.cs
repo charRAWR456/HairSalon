@@ -135,7 +135,7 @@ namespace HairSalon.Models
 
     MySqlParameter deleteId = new MySqlParameter();
     deleteId.ParameterName = "@thisId";
-    deleteId.Value = _id;
+    deleteId.Value = this.GetId();
     cmd.Parameters.Add(deleteId);
 
     cmd.ExecuteNonQuery();

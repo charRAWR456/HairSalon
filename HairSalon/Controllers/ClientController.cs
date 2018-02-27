@@ -41,13 +41,6 @@ namespace HairSalon.Controllers
       List<Client> allClients = Client.GetAll();
       return RedirectToAction("Index");
     }
-    // [HttpPost("/clients/{id}/delete")]
-    // public ActionResult DeleteAll(int id)
-    // {
-    //   Client thisClient = Client.Find(id);
-    //   thisClient.Delete();
-    //   return RedirectToAction("details", "Stylist");
-    // }
     [HttpPost("/clients/{id}/delete")]
     public ActionResult DeleteOne(int id)
     {
@@ -72,7 +65,7 @@ namespace HairSalon.Controllers
     {
       Client thisClient = Client.Find(id);
       thisClient.Edit(Request.Form["newname"]);
-      return RedirectToAction("Details", "Stylist");
+      return RedirectToAction("details", "Stylist");
     }
   }
 }

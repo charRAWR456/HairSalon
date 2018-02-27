@@ -1,17 +1,16 @@
-<h3>@Model["stylist"].GetName()`s Client List:</h3>
-<ul>
-@* @foreach (var client in @Model["clients"])
-{
-  <li>client.GetName()</li>
+@{
+  Layout = "_Layout";
 }
-</ol> *@
+<div class= "container">
+<h3>@Model["stylist"].GetName()`s Client List:</h3>
+<hr>
+<ul>
 @foreach(var client in @Model["clients"])
 {
-  @*<li><a href='/client/@item.GetId()'>@item.GetDescription()</a></li>*@
-  <li>@client.GetClientName() | <a href="/clients/{id}/update">Edit</a> | <a method="post" href="/client/{id}/delete">Delete</a></li>
+  <li>@client.GetClientName() | <a href="/clients/@client.GetId()/update">Edit</a> | <a method="post" href="/clients/@client.GetId()/delete">Delete</a></li>
 }
 </ul>
 <p><a href='/'>Home</a> | <a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add Client</a> | <a href='/stylists'>Stylist List</a></p>
 
-<form action="/client/delete" method="post">
- <button type="submit" name="button">Clear All Items</button>
+<form action="/clients/delete" method="post">
+</div>

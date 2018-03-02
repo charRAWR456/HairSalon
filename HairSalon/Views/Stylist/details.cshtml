@@ -1,16 +1,37 @@
+@using HairSalon.Models;
 @{
   Layout = "_Layout";
 }
-<div class= "container">
-<h3>@Model["stylist"].GetName()`s Client List:</h3>
-<hr>
-<ul>
-@foreach(var client in @Model["clients"])
-{
-  <li>@client.GetClientName() | <a href="/clients/@client.GetId()/update">Edit</a> | <a method="post" href="/clients/@client.GetId()/delete">Delete</a></li>
-}
-</ul>
-<p><a href='/'>Home</a> | <a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add Client</a> | <a href='/stylists'>Stylist List</a></p>
+<title>Stylist Details</title>
+<div class="container">
+  <h1>Stylist: @Model["stylist"].GetName()</h1>
+  <h5 class="text-muted"><em>Add existing client to Stylist or Add a new client</em></h5>
+  <hr />
+  <div class="row">
+  <h4><a class="add-new btn-info col-4" href='/clients/new/'>Add a new client</a></h4>
+  <h3 class="col-4 or">-or-</h3>
 
-<form action="/clients/delete" method="post">
+  <form action='/stylists/@Model["stylist"].GetId()/clients/new' class="col-4" method='post'>
+  <label for='client-id'><strong>Select a client</strong></label>
+  <select id='client-id' name='client-id' type='text'>
+    @foreach (var client in @Model["allClients"])
+    {
+      <option value='@client.GetId()'>@client.GetName()</option>
+    }
+    </select>
+    <button type='submit' class="btn-info">Add</button>
+    </form>
+    </div>
+    <hr>
+  @if (@Model["stylistClients"].Count != 0)
+  {
+    <h4>Current Clients:</h4>
+    <ul>
+    @foreach (var client in @Model["stylistClients"])
+    {
+      <li><span class="bullet">@client.GetName() </span>|<span class="text-muted"> @client.GetBirthDate()</span><br><a class="btn-info edit-delete" href="/clients/@client.GetId()/update">Edit</a> | <a class="btn-info edit-delete" method="post" href="/clients/@client.GetId()/delete">Delete</a></li>
+    }
+    </ul>
+  }
+  <hr>
 </div>

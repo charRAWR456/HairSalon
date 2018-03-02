@@ -1,12 +1,16 @@
 @{
   Layout = "_Layout";
 }
-<div class= "container">
-<h1>Add a new client to @Model.GetName()</h1>
-<form action='/stylists/@Model.GetId()' method='post'>
-  <input id='stylist-id' name='stylist-id' type='hidden' value='@Model.GetId()'>
-  <label for='client-name'>New Client Name :</label>
-  <input id='client-name' name='client-name' type='text'>
-  <button type='submit'>Add Client</button>
-</form>
+<title>Client Create Form</title>
+<div class="container">
+  <h1>Add a New Client</h1>
+  <h5 class="text-muted"><em>Only if it does not already exist</em></h5>
+  <hr>
+  <form action="/clients" method="post">
+    <label for="client-name">New Client:</label>
+    <input id="client-name" name="client-name" type="text" placeholder="Name">
+    
+    <button type="submit" class="btn-info">Add new client</button>
+  </form>
+  <hr>
 </div>

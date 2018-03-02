@@ -1,13 +1,16 @@
 @{
   Layout = "_Layout";
 }
-<div class= "container">
-<h1>Add a stylist</h1>
-<p>Add a stylist here:</p>
-<form action="/stylists" method="post">
-  <label for="stylist-name">Enter New Stylist Name</label>
-  <input id="stylist-name" name="stylist-name" type="text">
-  <button type="submit">Add Stylist</button>
-</form>
-<p><a href="/">Home</a> | <a href="/stylists">Stylists</a></p>
+<title>Stylist Create Form</title>
+<div class="container">
+  <h1>Add New Stylist</h1>
+  <h5 class="text-muted"><em>Only if it does not already exist</em></h5>
+  <hr />
+  <form action="/stylists/@Model" method="post">
+    <label for="stylist-name">Stylist name:</label>
+    <input id="stylist-name" name="stylist-name" type="text">
+
+    <button type="submit" class="btn-info">Add Stylist</button>
+  </form>
+  <hr>
 </div>

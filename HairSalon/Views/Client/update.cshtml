@@ -1,15 +1,16 @@
-
 @{
   Layout = "_Layout";
 }
-<div class= "container">
-<h1>Hair Salon</h1>
-<hr />
-<h2>Edit Client: @Model.GetClientName()</h2>
-<form action="/stylists/@stylist.GetId()" method="post">
-    <label for="name">Name:</label>
-    <input type="text" name="newname" value="@Model.GetClientName()">
-    <button type="submit">Update</button>
-</form>
-<h4><a href="/">Home</a></h4>
+<title>Client update</title>
+<div class="container">
+  <h1>Update Client: @Model.GetName()</h1>
+  <h5 class="text-muted"><em>Be sure you select "update client" to save your changes</em></h5>
+  <hr />
+  <form action="/clients/@Model.GetId()/update" method="post">
+    <label for="name">Update:</label>
+    <input type="text" name="newname" value="@Model.GetName()">
+
+    <button type="submit" class="btn-info">Update Client</button>
+  </form>
+  <hr>
 </div>

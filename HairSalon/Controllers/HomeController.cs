@@ -13,5 +13,10 @@ namespace HairSalon.Controllers
         {
             return View();
         }
+        [HttpGet("/Home/Success")]
+  public ActionResult Success()
+  {
+    return View();
+  }
     }
 }

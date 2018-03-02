@@ -116,7 +116,7 @@ namespace HairSalon.Tests
     public void Edit_UpdatesClientInDatabase_String()
     {
       //Arrange
-      Client testClient = new Client ("Jamie Pittak", 1,1);
+      Client testClient = new Client ("Jamie Pittak", 1);
       testClient.Save();
       string secondClientName = "Nick Pittak";
 
@@ -133,10 +133,10 @@ namespace HairSalon.Tests
     {
       //Arrange
       string firstClientName = "Jamie Pittak";
-      Client testClient = new Client(firstClientName,1,2);
+      Client testClient = new Client(firstClientName,2);
       testClient.Save();
       string secondClientName = "Nick Pittak";
-      Client testClient2 = new Client(secondClientName,1,3);
+      Client testClient2 = new Client(secondClientName,3);
       testClient2.Save();
       //Act
       testClient.Delete();
@@ -145,6 +145,46 @@ namespace HairSalon.Tests
 
       //Assert
       CollectionAssert.AreEqual(expected, result);
+    }
+    [TestMethod]
+    public void AddStylist_AddsStylistToClient_StylistList()
+    {
+      //Arrange
+      Client testClient = new Client("Sam");
+      testClient.Save();
+
+      Stylist testStylist = new Stylist("Howard");
+      testStylist.Save();
+
+      //Act
+      testClient.AddStylist(testStylist);
+
+      List<Stylist> result = testClient.GetStylists();
+      List<Stylist> testList = new List<Stylist>{testStylist};
+
+      //Assert
+      CollectionAssert.AreEqual(testList, result);
+    }
+    [TestMethod]
+    public void GetStylists_ReturnsAllClientStylists_StylistList()
+    {
+      //Arrange
+      Client testClient = new Client("Sandy");
+      testClient.Save();
+
+      Stylist testStylist1 = new Stylist("Phillip");
+      testStylist1.Save();
+
+      Stylist testStylist2 = new Stylist("Zachary");
+      testStylist2.Save();
+
+      //Act
+      testClient.AddStylist(testStylist1);
+      List<Stylist> result = testClient.GetStylists();
+      List<Stylist> testList = new List<Stylist> {testStylist1};
+
+      //Assert
+      CollectionAssert.AreEqual(testList, result);
     }
   }
 }

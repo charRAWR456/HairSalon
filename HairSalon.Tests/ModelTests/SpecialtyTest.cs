@@ -11,7 +11,7 @@ namespace HairSalon.Tests
   {
     public SpecialtyTest()
     {
-      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=hair_salon_test;";
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=jamie_pittak_test;";
     }
     public void Dispose()
     {

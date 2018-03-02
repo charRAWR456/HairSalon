@@ -22,7 +22,7 @@ namespace HairSalon.Models
       }
       else
       {
-//change?
+        //change?
         Client newClient = (Client) otherClient;
         bool idEquality = (this.GetId() == newClient.GetId());
         bool clientNameEquality = (this.GetClientName() == newClient.GetClientName());
@@ -31,7 +31,7 @@ namespace HairSalon.Models
     }
     public override int GetHashCode()
     {
-         return this.GetClientName().GetHashCode();
+      return this.GetClientName().GetHashCode();
     }
     public string GetClientName()
     {
@@ -87,8 +87,8 @@ namespace HairSalon.Models
 
       while (rdr.Read())
       {
-          clientId = rdr.GetInt32(0);
-          clientName = rdr.GetString(1);
+        clientId = rdr.GetInt32(0);
+        clientName = rdr.GetString(1);
       }
 
       Client foundClient= new Client(clientName, clientId);
@@ -96,67 +96,67 @@ namespace HairSalon.Models
       conn.Close();
       if (conn != null)
       {
-          conn.Dispose();
+        conn.Dispose();
       }
       return foundClient;
     }
     public static void DeleteAll()
-   {
-     MySqlConnection conn = DB.Connection();
-     conn.Open();
-
-     var cmd = conn.CreateCommand() as MySqlCommand;
-     cmd.CommandText = @"DELETE FROM clients;";
-
-     cmd.ExecuteNonQuery();
-
-     conn.Close();
-     if (conn != null)
-     {
-         conn.Dispose();
-     }
-   }
-   public void Delete()
-  {
-    MySqlConnection conn = DB.Connection();
-    conn.Open();
-
-    var cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"DELETE FROM clients WHERE id = @thisId;DELETE FROM clients_stylists WHERE client_id = @thisId;";
-
-    MySqlParameter deleteId = new MySqlParameter();
-    deleteId.ParameterName = "@thisId";
-    deleteId.Value = this.GetId();
-    cmd.Parameters.Add(deleteId);
-
-    cmd.ExecuteNonQuery();
-
-    conn.Close();
-    if (conn != null)
-    {
-        conn.Dispose();
-    }
-  }
-   public void Save()
     {
       MySqlConnection conn = DB.Connection();
-     conn.Open();
+      conn.Open();
 
-     var cmd = conn.CreateCommand() as MySqlCommand;
-     cmd.CommandText = @"INSERT INTO `clients` (`client_name`) VALUES (@Client_Name);";
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM clients;";
 
-     MySqlParameter clientName = new MySqlParameter();
-     clientName.ParameterName = "@Client_Name";
-     clientName.Value = this._clientName;
-     cmd.Parameters.Add(clientName);
-
-     cmd.ExecuteNonQuery();
-     _id = (int) cmd.LastInsertedId;
+      cmd.ExecuteNonQuery();
 
       conn.Close();
       if (conn != null)
       {
-          conn.Dispose();
+        conn.Dispose();
+      }
+    }
+    public void Delete()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM clients WHERE id = @thisId;DELETE FROM clients_stylists WHERE client_id = @thisId;";
+
+      MySqlParameter deleteId = new MySqlParameter();
+      deleteId.ParameterName = "@thisId";
+      deleteId.Value = this.GetId();
+      cmd.Parameters.Add(deleteId);
+
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+    public void Save()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO `clients` (`client_name`) VALUES (@Client_Name);";
+
+      MySqlParameter clientName = new MySqlParameter();
+      clientName.ParameterName = "@Client_Name";
+      clientName.Value = this._clientName;
+      cmd.Parameters.Add(clientName);
+
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
       }
     }
     public void Edit(string newClientName)
@@ -182,7 +182,7 @@ namespace HairSalon.Models
       conn.Close();
       if (conn != null)
       {
-          conn.Dispose();
+        conn.Dispose();
       }
     }
     public List<Stylist> GetStylists()

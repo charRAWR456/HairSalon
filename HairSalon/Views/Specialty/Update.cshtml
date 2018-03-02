@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+<title>Specialty Update</title>
+<div class="container">
+  <h1>Update Specialty: @Model.GetDescription()</h1>
+  <h5 class="text-muted"><em>Be sure you select "update specialty" to save your changes</em></h5>
+  <hr />
+  <form action="/specialtys/@Model.GetId()/update" method="post">
+    <label for="description">Update:</label>
+    <input type="text" name="description" value="@Model.GetDescription()">
+    <button type="submit" class="btn-info">Update Specialty</button>
+  </form>
+  <hr>
+</div>

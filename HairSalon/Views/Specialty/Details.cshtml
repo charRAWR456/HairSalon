@@ -1,0 +1,38 @@
+@using HairSalon.Models;
+@{
+  Layout = "_Layout";
+}
+<title>Specialty Details</title>
+<div class="container">
+  <h1>Specialty: @Model["specialty"].GetDescription()</h1>
+  <h5 class="text-muted"><em>Add existing stylist to Specialty or Add a new stylist</em></h5>
+  <hr />
+  <div class="row">
+  <h4><a class="add-new btn-info col-4" href='/stylists/new/@Model["specialty"].GetId()'>Add a new stylist</a></h4>
+  <h3 class="col-4 or">-or-</h3>
+
+  <form action='/specialtys/@Model["specialty"].GetId()/stylists/new' class="col-4" method='post'>
+  <label for='stylist-id'><strong>Select a stylist</strong></label>
+  <select id='stylist-id' name='stylist-id' type='text'>
+  @foreach (var stylist in @Model["allStylists"])
+  {
+    <option value='@stylist.GetId()'>@stylist.GetName()</option>
+  }
+  </select>
+  <button type='submit' class="btn-info">Add</button>
+  </form>
+  </div>
+  @if (@Model["specialtyStylists"].Count != 0)
+  {
+
+    <hr>
+    <h4>Current Stylists:</h4>
+    <ul>
+    @foreach (Stylist stylist in @Model["specialtyStylists"])
+    {
+      <li> <span class="bullet">@stylist.GetName()</span> <a class="btn-info edit-delete" href="/stylists/@stylist.GetId()/update">Edit</a> | <a class="btn-info edit-delete" href="/stylists/@stylist.GetId()/delete">Delete</a></li>
+    }
+    </ul>
+  }
+  <hr>
+</div>

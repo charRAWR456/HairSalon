@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+<title>Specialty Create Form</title>
+<div class="container">
+  <h1>Add a New Specialty</h1>
+  <h5 class="text-muted"><em>Only if it does not already exist</em></h5>
+  <hr>
+  <form action="/specialtys" method="post">
+    <label for="specialty-description"><strong>New Specialty:</strong></label>
+    <input id="specialty-description" name="specialty-description" type="text" placeholder="ex: Color">
+    <button type="submit" class="btn-info">Add new specialty</button>
+  </form>
+  <hr>
+</div>
